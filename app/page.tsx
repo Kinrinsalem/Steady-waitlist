@@ -1,69 +1,62 @@
 import Image from "next/image";
+import WaitlistForm from "./waitlist-form";
+import Loader from "./loader";
+import ellipse from "./Assets/elipse.svg";
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+    <main className="grid min-h-svh grid-cols-1 bg-[#f3ecdd] md:grid-cols-2">
+      <Loader />
+      <section
+        aria-label="Steady introduction"
+        className="grid min-h-[22rem] grid-rows-[auto_1fr_auto] bg-[#16221c] px-7 py-7 sm:min-h-[26rem] sm:px-10 sm:py-9 md:min-h-svh md:px-12 md:py-11 lg:px-16 lg:py-14"
+      >
+        <p className="font-fraunces text-[2rem] font-bold leading-none tracking-[-0.035em] text-[#f3ecdd]">
+          Steady.
+        </p>
+
+        <div
+          className="relative place-self-center h-[16rem] w-[16rem] sm:h-[19rem] sm:w-[19rem] md:h-[min(34vw,32rem)] md:w-[min(34vw,32rem)]"
+          aria-hidden="true"
+        >
+          <Image
+            src={ellipse}
+            alt=""
+            fill
+            className="object-contain"
+            priority
+          />
+        </div>
+
+        <div>
+          <p className="mb-2 text-[0.75rem] font-medium leading-none tracking-[0.02em] text-[#9db8a8] sm:text-[0.8125rem]">
+            a calmer way to feel steady
+          </p>
+          <p className="font-fraunces max-w-md text-[1.45rem] font-bold leading-[1.12] tracking-[-0.025em] text-[#f3ecdd] sm:text-[1.7rem] md:text-[clamp(1.45rem,2vw,2rem)]">
+            check in, reach out, keep going.
           </p>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+      </section>
+
+      <section className="flex items-center px-7 py-14 sm:px-12 sm:py-20 md:px-12 md:py-12 lg:px-16 xl:px-24">
+        <div className="mx-auto w-full max-w-[31rem]">
+          <header className="mb-10 sm:mb-12">
+            <p className="mb-4 text-sm font-medium tracking-[-0.01em] text-[#77746d]">
+              Join the waitlist
+            </p>
+            <h1 className="font-fraunces text-[2.55rem] font-bold leading-[0.98] tracking-[-0.045em] text-[#222622] sm:text-[3rem] md:text-[clamp(2.5rem,3.4vw,3.5rem)]">
+              <span className="block">Be first to feel</span>
+              <span className="block">Steady.</span>
+            </h1>
+            <p className="mt-6 max-w-[29rem] text-[0.97rem] leading-[1.65] tracking-[-0.01em] text-[#706f69] sm:text-base">
+              Check in with yourself, understand how you&apos;re feeling, and
+              reach a therapist when you need one.
+            </p>
+          </header>
+
+          <WaitlistForm />
         </div>
-      </main>
-    </div>
+      </section>
+    </main>
   );
 }

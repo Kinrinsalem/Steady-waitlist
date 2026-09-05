@@ -1,29 +1,31 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Fraunces, Instrument_Serif } from "next/font/google";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const instrumentSerif = Instrument_Serif({
+  variable: "--font-instrument-serif",
   subsets: ["latin"],
+  weight: "400",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const fraunces = Fraunces({
+  variable: "--font-fraunces-face",
   subsets: ["latin"],
 });
 
 export const metadata: Metadata = {
-  title: "Steady",
-  description: "Steady",
+  title: "Steady — A calmer way to feel steady",
+  description:
+    "Join the Steady waitlist and be first to discover a calmer way to check in, reach out, and keep going.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${instrumentSerif.variable} ${fraunces.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full">{children}</body>
     </html>
   );
 }
