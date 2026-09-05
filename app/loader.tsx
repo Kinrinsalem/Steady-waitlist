@@ -27,7 +27,7 @@ export default function Loader() {
     <div
       aria-hidden="true"
       style={{ transitionDuration: `${FADE_MS}ms` }}
-      className={`fixed inset-0 z-50 grid place-items-center bg-[#16221c] transition-opacity ease-out ${
+      className={`fixed inset-0 z-50 grid place-items-center bg-[#5C79A7] transition-opacity ease-out ${
         visible ? "opacity-100" : "opacity-0"
       }`}
     >
