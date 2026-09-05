@@ -49,7 +49,7 @@ export default function Home() {
               <span className="block">Steady.</span>
             </h1>
             <p className="mt-6 max-w-[29rem] text-[0.97rem] leading-[1.65] tracking-[-0.01em] text-[#706f69] sm:text-base">
-              Check in with yourself, understand how you&apos;re feeling, and
+              Check in with yourself, understand how you're feeling, and
               reach a therapist when you need one.
             </p>
           </header>
