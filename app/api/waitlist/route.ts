@@ -1,5 +1,5 @@
-import { supabaseServer } from "@/app/lib/supabase-server";
-import { resend, waitlistFromEmail } from "@/app/lib/resend";
+import { getSupabaseServer } from "@/app/lib/supabase-server";
+import { getResend, waitlistFromEmail } from "@/app/lib/resend";
 
 type WaitlistPayload = {
   name?: unknown;
@@ -21,7 +21,7 @@ export async function POST(request: Request) {
     return Response.json({ error: "Invalid submission." }, { status: 400 });
   }
 
-  const { error } = await supabaseServer
+  const { error } = await getSupabaseServer()
     .from("waitlist")
     .insert({ name, email, interest });
 
@@ -36,15 +36,23 @@ export async function POST(request: Request) {
     return Response.json({ error: "Something went wrong." }, { status: 500 });
   }
 
-  const { error: emailError } = await resend.emails.send({
-    from: waitlistFromEmail,
-    to: email,
-    subject: "You're on the Steady waitlist",
-    html: `<p>Hi ${name},</p><p>You're officially on the Steady waitlist. We'll email you as soon as we're ready for you to check in, reach out, and keep going.</p><p>— The Steady team</p>`,
-  });
+  const resend = getResend();
 
-  if (emailError) {
-    console.error("Failed to send waitlist confirmation email:", emailError);
+  if (resend) {
+    const { error: emailError } = await resend.emails.send({
+      from: waitlistFromEmail,
+      to: email,
+      subject: "You're on the Steady waitlist",
+      html: `<p>Hi ${name},</p><p>You're officially on the Steady waitlist. We'll email you as soon as we're ready for you to check in, reach out, and keep going.</p><p>— The Steady team</p>`,
+    });
+
+    if (emailError) {
+      console.error("Failed to send waitlist confirmation email:", emailError);
+    }
+  } else {
+    console.warn(
+      "RESEND_API_KEY not configured; skipping waitlist confirmation email.",
+    );
   }
 
   return Response.json({ ok: true }, { status: 201 });
