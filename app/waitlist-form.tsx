@@ -178,7 +178,7 @@ export default function WaitlistForm() {
             </span>
           </label>
           <label className="grid cursor-pointer grid-cols-[1fr_1.25rem] items-center gap-3 text-[0.95rem] text-[#5e5e5e]">
-            <span>Person seeking support</span>
+            <span>Individual</span>
             <span className="relative h-5 w-5">
               <input
                 name="interest"
